@@ -1,125 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>I'm Sorry</title>
 
 <style>
 :root {
-    --soft-pink: #ffc8dd;
-    --deep-pink: #fb6f92;
-    --bg-color: #fff0f3;
+  --soft-pink: #ffc8dd;
+  --deep-pink: #fb6f92;
+  --bg-color: #fff0f3;
 }
 
 * { box-sizing: border-box; }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--bg-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
 }
 
 .heart-bg {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .card {
-    position: relative;
-    z-index: 1;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(10px);
-    padding: 3rem;
-    border-radius: 30px;
-    max-width: 420px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(251,111,146,0.25);
-    overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  padding: 3rem;
+  border-radius: 30px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(251,111,146,0.25);
 }
 
 h1 {
-    font-size: 3rem;
-    animation: float 3s ease-in-out infinite;
+  font-size: 3rem;
+  animation: float 3s ease-in-out infinite;
 }
 
 p {
-    color: #7a5c61;
-    line-height: 1.6;
+  color: #7a5c61;
+  line-height: 1.6;
 }
+
+/* ===== BUTTON LAYOUT (BULLETPROOF) ===== */
 
 .btn-group {
-    position: relative;
-    width: 100%;
-    height: 90px;
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 2rem;
+  height: 90px;
 }
 
+/* LEFT ZONE (YES) */
+.yes-zone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* RIGHT ZONE (NO) */
+.no-zone {
+  position: relative;
+  overflow: hidden; /* 🔒 cannot escape */
+}
+
+/* BUTTONS */
+
 button {
-    padding: 12px 28px;
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.25s ease;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s ease;
 }
 
 #yesBtn {
-    background: var(--deep-pink);
-    color: white;
-    z-index: 3;
-    box-shadow: 0 0 0 rgba(251,111,146,0.6);
+  background: var(--deep-pink);
+  color: white;
 }
 
 #yesBtn:hover {
-    transform: scale(1.12);
-    box-shadow: 0 0 25px rgba(251,111,146,0.9);
+  transform: scale(1.12);
+  box-shadow: 0 0 25px rgba(251,111,146,0.9);
 }
 
 #noBtn {
-    position: absolute;
-    background: var(--soft-pink);
-    color: var(--deep-pink);
-    right: 10px;
-    top: 25px;
-    z-index: 1;
+  position: absolute;
+  background: var(--soft-pink);
+  color: var(--deep-pink);
+  left: 10px;
+  top: 25px;
 }
 
+/* TEXTS */
+
 #tease {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: var(--deep-pink);
-    height: 1em;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--deep-pink);
+  height: 1em;
 }
 
 .success-msg {
-    display: none;
-    font-size: 1.6rem;
-    font-weight: bold;
-    animation: fadeIn 1s ease forwards;
+  display: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  animation: fadeIn 1s ease forwards;
 }
 
 @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 </style>
 </head>
@@ -129,29 +141,34 @@ button {
 <div class="heart-bg" id="heartBg"></div>
 
 <div class="card">
-    <h1 id="emoji">🥺</h1>
-    <h2 id="title">I'm so sorry...</h2>
-    <p id="message">
-        I messed up and I feel terrible about it.
-        Can you forgive me?
-    </p>
+  <h1 id="emoji">🥺</h1>
+  <h2 id="title">I'm so sorry...</h2>
+  <p id="message">
+    I messed up and I feel terrible about it.
+    Can you forgive me?
+  </p>
 
-    <div class="btn-group" id="btnGroup">
-        <button id="yesBtn">Yes, I forgive you</button>
-        <button id="noBtn">No</button>
+  <div class="btn-group">
+    <div class="yes-zone">
+      <button id="yesBtn">Yes, I forgive you</button>
     </div>
 
-    <div id="tease"></div>
-
-    <div id="success" class="success-msg">
-        Yay! Pinky promise to make it up to you 💖🌸
+    <div class="no-zone" id="noZone">
+      <button id="noBtn">No</button>
     </div>
+  </div>
+
+  <div id="tease"></div>
+
+  <div id="success" class="success-msg">
+    Yay! Pinky promise to make it up to you 💖🌸
+  </div>
 </div>
 
 <script>
 const noBtn = document.getElementById('noBtn');
+const noZone = document.getElementById('noZone');
 const yesBtn = document.getElementById('yesBtn');
-const btnGroup = document.getElementById('btnGroup');
 const tease = document.getElementById('tease');
 const success = document.getElementById('success');
 const title = document.getElementById('title');
@@ -159,66 +176,69 @@ const message = document.getElementById('message');
 const emoji = document.getElementById('emoji');
 
 const teaseTexts = [
-    "Nice try 😏",
-    "Almost had it!",
-    "Not today 😈",
-    "Hehe nope 💕",
-    "You sure? 👀"
+  "Nice try 😏",
+  "Almost!",
+  "Not happening 😈",
+  "Hehe nope 💕",
+  "You wish 👀"
 ];
 
+/* NO BUTTON MOVEMENT — HARD CONSTRAINED */
 function moveNoButton() {
-    const box = btnGroup.getBoundingClientRect();
-    const btn = noBtn.getBoundingClientRect();
+  const zone = noZone.getBoundingClientRect();
+  const btn = noBtn.getBoundingClientRect();
 
-    const minX = box.width / 2;
-    const maxX = box.width - btn.width;
-    const maxY = box.height - btn.height;
+  const maxX = zone.width - btn.width;
+  const maxY = zone.height - btn.height;
 
-    const x = minX + Math.random() * (maxX - minX);
-    const y = Math.random() * maxY;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
 
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
+  noBtn.style.left = `${x}px`;
+  noBtn.style.top = `${y}px`;
 
-    tease.textContent = teaseTexts[Math.floor(Math.random() * teaseTexts.length)];
+  tease.textContent =
+    teaseTexts[Math.floor(Math.random() * teaseTexts.length)];
 }
 
-// Dodge hover AND click
+/* Dodge EVERYTHING */
 noBtn.addEventListener('mouseenter', moveNoButton);
 noBtn.addEventListener('mousedown', moveNoButton);
 noBtn.addEventListener('touchstart', moveNoButton);
 
+/* YES CLICK */
 yesBtn.addEventListener('click', () => {
-    btnGroup.style.display = 'none';
-    title.style.display = 'none';
-    message.style.display = 'none';
-    tease.style.display = 'none';
-    emoji.textContent = '💖';
-    success.style.display = 'block';
+  title.style.display = 'none';
+  message.style.display = 'none';
+  document.querySelector('.btn-group').style.display = 'none';
+  tease.style.display = 'none';
+  emoji.textContent = '💖';
+  success.style.display = 'block';
 
-    clearInterval(heartInterval);
-    for (let i = 0; i < 30; i++) createHeart();
+  clearInterval(heartInterval);
+  for (let i = 0; i < 25; i++) createHeart();
 });
 
+/* HEARTS */
 function createHeart() {
-    const heart = document.createElement('div');
-    heart.textContent = '💗';
-    heart.style.position = 'absolute';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.bottom = '-20px';
-    heart.style.fontSize = Math.random() * 18 + 12 + 'px';
-    heart.style.opacity = Math.random();
-    heart.style.transition = 'transform 4s linear, opacity 4s';
+  const heart = document.createElement('div');
+  heart.textContent = '💗';
+  heart.style.position = 'absolute';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.bottom = '-20px';
+  heart.style.fontSize = Math.random() * 18 + 12 + 'px';
+  heart.style.opacity = Math.random();
+  heart.style.transition = 'transform 4s linear, opacity 4s';
 
-    document.getElementById('heartBg').appendChild(heart);
+  document.getElementById('heartBg').appendChild(heart);
 
-    setTimeout(() => {
-        heart.style.transform =
-            `translateY(-110vh) rotate(${Math.random() * 360}deg)`;
-        heart.style.opacity = '0';
-    }, 50);
+  setTimeout(() => {
+    heart.style.transform =
+      `translateY(-110vh) rotate(${Math.random() * 360}deg)`;
+    heart.style.opacity = '0';
+  }, 50);
 
-    setTimeout(() => heart.remove(), 4000);
+  setTimeout(() => heart.remove(), 4000);
 }
 
 const heartInterval = setInterval(createHeart, 700);
